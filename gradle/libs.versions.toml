@@ -1,0 +1,53 @@
+[versions]
+agp = "8.3.0"
+kotlin = "1.9.22"
+coreKtx = "1.12.0"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+appcompat = "1.6.1"
+material = "1.11.0"
+activity = "1.8.0"
+constraintlayout = "2.1.4"
+hiltVersion = "2.50"
+coroutinesVersion = "1.7.3"
+kotlinSerializationVersion = "1.6.3"
+glideVersion = "4.16.0"
+navVersion = "2.7.7"
+retrofitVersion = "2.9.0"
+retrofitKotlinxSerialization = "1.0.0"
+okHttpVersion = "4.12.0"
+
+[libraries]
+
+hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltVersion" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltVersion" }
+
+retrofit2-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion"}
+retrofit2-converter-kotlinx = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerialization" }
+
+okhttp3-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okHttpVersion" }
+
+kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutinesVersion"}
+kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerializationVersion" }
+
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glideVersion" }
+
+nav-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navVersion" }
+nav-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navVersion" }
+
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
