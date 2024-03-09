@@ -52,6 +52,9 @@ dependencies {
     implementation(libs.retrofit2.converter.kotlinx)
     implementation(libs.okhttp3.okhttp)
 
+    // Paging3 (Paging)
+    implementation(libs.paging)
+
     // Kotlin Coroutines (Async)
     implementation(libs.kotlinx.coroutines)
 

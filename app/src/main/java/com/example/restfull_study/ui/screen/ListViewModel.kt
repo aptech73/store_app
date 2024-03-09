@@ -2,6 +2,7 @@ package com.example.restfull_study.ui.screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import com.example.restfull_study.data.remote.model.Product
 import com.example.restfull_study.domain.repository.ProductsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
