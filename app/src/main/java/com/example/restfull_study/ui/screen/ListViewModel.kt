@@ -21,12 +21,8 @@ class ListViewModel @Inject constructor(
     private val repository: ProductsRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<ListState>(ListState.Loading())
-    var uiState : StateFlow<ListState> = _uiState.asStateFlow()
-
     val products : Flow<PagingData<Product>> = Pager(
         PagingConfig(pageSize = 20),
         pagingSourceFactory = { repository.getProductsList() }
     ).flow.cachedIn(viewModelScope)
-
 }
