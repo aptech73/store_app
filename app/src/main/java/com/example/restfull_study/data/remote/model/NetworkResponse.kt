@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class NetworkResponse (
     val products : List<Product>,
-    val total : Long,
-    val skip : Long,
-    val limit : Long
+    val total : Int,
+    val skip : Int,
+    val limit : Int
 )

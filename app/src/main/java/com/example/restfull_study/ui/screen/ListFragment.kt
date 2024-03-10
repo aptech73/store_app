@@ -14,6 +14,7 @@ import com.example.restfull_study.R
 import com.example.restfull_study.data.remote.model.Product
 import com.example.restfull_study.databinding.FragmentListBinding
 import com.example.restfull_study.ui.adapter.ListProductsAdapter
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class ListFragment : Fragment(R.layout.fragment_list) {
@@ -42,8 +43,8 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect {state ->
-                    if (state is ListState.Success) setSuccessState(state.products)
+                viewModel.products.collectLatest {
+                    listProductsAdapter.submitData(it)
                 }
             }
         }
@@ -54,10 +55,6 @@ class ListFragment : Fragment(R.layout.fragment_list) {
             listProducts.adapter = listProductsAdapter
             listProducts.layoutManager = LinearLayoutManager(context)
         }
-    }
-
-    private fun setSuccessState(products : List<Product>) {
-        listProductsAdapter.submitList(products)
     }
 
     override fun onDestroyView() {
