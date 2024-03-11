@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restfull_study.R
 import com.example.restfull_study.data.remote.model.Product
@@ -53,7 +54,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     private fun setUi() {
         binding.apply {
             listProducts.adapter = listProductsAdapter
-            listProducts.layoutManager = LinearLayoutManager(context)
+            listProducts.layoutManager = GridLayoutManager(context, 2)
         }
     }
 
