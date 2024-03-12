@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restfull_study.R
 import com.example.restfull_study.data.remote.model.Product
 import com.example.restfull_study.databinding.FragmentListBinding
+import com.example.restfull_study.ui.adapter.ListLoadStateAdapter
 import com.example.restfull_study.ui.adapter.ListProductsAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -53,8 +54,11 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private fun setUi() {
         binding.apply {
-            listProducts.adapter = listProductsAdapter
-            listProducts.layoutManager = GridLayoutManager(context, 2)
+            listProducts.adapter = listProductsAdapter.withLoadStateHeaderAndFooter(
+                footer = ListLoadStateAdapter(),
+                header = ListLoadStateAdapter()
+            )
+            listProducts.layoutManager = LinearLayoutManager(context)
         }
     }
 

@@ -29,7 +29,7 @@ class ListProductsAdapter :
         fun bind(product : Product?) {
             binding.apply {
                 titleProduct.text = product?.title
-                priceProduct.text = product?.price.toString()
+                descProduct.text = product?.description
                 Glide.with(binding.root).load(product?.thumbnail).into(imageProduct)
             }
         }
