@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restfull_study.R
@@ -53,11 +55,18 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     }
 
     private fun setUi() {
+        listProductsAdapter.addLoadStateListener { state ->
+            with(binding) {
+                listProducts.isVisible = state.refresh != LoadState.Loading
+                progress.isVisible = state.refresh == LoadState.Loading
+            }
+        }
         binding.apply {
-            listProducts.adapter = listProductsAdapter.withLoadStateHeaderAndFooter(
-                footer = ListLoadStateAdapter(),
-                header = ListLoadStateAdapter()
-            )
+            listProducts.adapter = listProductsAdapter
+                .withLoadStateHeaderAndFooter(
+                    footer = ListLoadStateAdapter(),
+                    header = ListLoadStateAdapter()
+                )
             listProducts.layoutManager = LinearLayoutManager(context)
         }
     }
