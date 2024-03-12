@@ -18,6 +18,7 @@ import com.example.restfull_study.data.remote.model.Product
 import com.example.restfull_study.databinding.FragmentListBinding
 import com.example.restfull_study.ui.adapter.ListLoadStateAdapter
 import com.example.restfull_study.ui.adapter.ListProductsAdapter
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -56,11 +57,20 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private fun setUi() {
         listProductsAdapter.addLoadStateListener { state ->
+            val refreshState = state.refresh
             with(binding) {
-                listProducts.isVisible = state.refresh != LoadState.Loading
-                progress.isVisible = state.refresh == LoadState.Loading
+                listProducts.isVisible = refreshState != LoadState.Loading
+                progress.isVisible = refreshState == LoadState.Loading
+                if (refreshState is LoadState.Error) {
+                    Snackbar.make(
+                        root,
+                        refreshState.error.localizedMessage ?: " ",
+                        Snackbar.LENGTH_LONG)
+                        .show()
+                }
             }
         }
+
         binding.apply {
             listProducts.adapter = listProductsAdapter
                 .withLoadStateHeaderAndFooter(
@@ -68,6 +78,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
                     header = ListLoadStateAdapter()
                 )
             listProducts.layoutManager = LinearLayoutManager(context)
+
         }
     }
 
